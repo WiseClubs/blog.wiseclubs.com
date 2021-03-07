@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import Date from '../components/date'
 import utilStyles from '../styles/utils.module.css'
@@ -53,9 +53,9 @@ export default function Home({allPostsData}) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+              <NextLink href={`/posts/${id}`}>
                 <a>{title}</a>
-              </Link>
+              </NextLink>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />

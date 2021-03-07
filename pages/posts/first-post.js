@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/Link'
+import LiNextLinknk from 'next/Link'
 import Layout from '../../components/layout'
 
 export default function FirstPost() {
@@ -10,9 +10,9 @@ export default function FirstPost() {
       </Head>
       <h1>First Post</h1>
       <h2>
-        <Link href="/">
+        <NextLink href="/">
           <a>Back to home</a>
-        </Link>
+        </NextLink>
       </h2>
     </Layout>
   </>
