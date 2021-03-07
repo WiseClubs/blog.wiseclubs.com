@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import NextLink from 'next/Link'
+import NextLink from 'next/link'
 import Layout from '../../components/layout'
 
 export default function FirstPost() {
