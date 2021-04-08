@@ -20,16 +20,31 @@ Inside that directory, you can run several commands:
 #### Introduced Element-React
 - https://elemefe.github.io/element-react/index#/en-US/quick-start
 > npm i element-react --save
+
 > npm install element-theme-default --save
+
 > npm install --save next-transpile-modules
+
   `crate next.config.js` and add following line of code
   `const withTM = require('next-transpile-modules')(['element-react']);`
   `module.exports = withTM();`
+
 > npm i -S @babel/runtime
+
 > npm install --save babel-runtime --save
+
 > npm i -D react-hot-loader@next
+
 > Import style globally `pages/_app.js`
-  `import 'element-theme-default'`  
+  `import 'element-theme-default'`
+
 > Import button `[id].js`
+
   `import dynamic from 'next/dynamic'`
   `const Button = dynamic(() => import('element-react/dist/npm/es6/src/button'))`
+
+#### Introduced React Context Store
+Use patttern from this repo - https://github.com/JoseZunigaDyehs/boilerplate-react-hooks
+
+#### Introduced Save 
+Saving last scrolled value - https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
