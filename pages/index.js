@@ -1,9 +1,11 @@
+import React, { useEffect, useContext } from "react";
 import Head from 'next/head'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import Date from '../components/date'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
+import {StoreContext} from "../context/store/storeContext";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -33,6 +35,26 @@ export async function getStaticProps() {
 // }
 
 export default function Home({allPostsData}) {
+  const {scrollPos, setScrollPos, state, actions} = useContext(StoreContext);
+
+  useEffect(() => console.log('inside index', { newState: state }), [state]);
+
+  // https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
+  const handleScrollPos = () => {
+      setScrollPos(window.scrollY);
+  };
+
+  React.useEffect(() => {
+      window.scrollTo(0, scrollPos);
+  }, []);
+
+  React.useEffect(() => {
+      window.addEventListener('scroll', handleScrollPos);
+      return () => {
+          window.removeEventListener('scroll', handleScrollPos);
+      };
+  }, []);
+
   return (
     <Layout home>
       <Head>
@@ -53,9 +75,18 @@ export default function Home({allPostsData}) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <NextLink href={`/posts/${id}`}>
+              <Link
+                scroll={true}
+                // href={`/posts/${id}`}
+                as={`/posts/${id}`}
+                href="/posts/[id]"
+                // href={{
+                  // pathname: '/posts/[id]',
+                  // query: { id: id },
+                // }}
+              >
                 <a>{title}</a>
-              </NextLink>
+              </Link>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />

@@ -1,13 +1,16 @@
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
-import NextLink from 'next/link'
+import Link from 'next/link'
 
 const name = 'Nishant Mendiratta'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, home }) {
+  const router = useRouter()
+
   return (
     <div className={styles.container}>
       <Head>
@@ -40,7 +43,7 @@ export default function Layout({ children, home }) {
           </>
         ) : (
           <>
-            <NextLink href="/">
+            <Link href="/">
               <a>
                 <Image
                   priority
@@ -51,11 +54,11 @@ export default function Layout({ children, home }) {
                   alt={name}
                 />
               </a>
-            </NextLink>
+            </Link>
             <h2 className={utilStyles.headingLg}>
-              <NextLink href="/">
+              <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
-              </NextLink>
+              </Link>
             </h2>
           </>
         )}
@@ -63,9 +66,9 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <NextLink href="/">
+          <span onClick={() => router.back()}>
             <a>← Back to home</a>
-          </NextLink>
+          </span>
         </div>
       )}
     </div>
